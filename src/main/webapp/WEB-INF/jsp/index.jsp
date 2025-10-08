@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	สวัสดี
+	test type 555
 </body>
 </html>
