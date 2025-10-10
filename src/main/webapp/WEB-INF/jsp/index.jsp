@@ -1,102 +1,95 @@
+<%-- File: src/main/webapp/WEB-INF/jsp/index.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ระบบจัดการหอพัก | Dormitory Management System</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<%-- JSP Standard Tag Library (JSTL) สำหรับการวนลูป --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
-    <!-- CSS พื้นฐาน -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwapLife - ให้ของที่ไม่ได้ใช้ กลับไปมีคุณค่าอีกครั้ง</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            background-color: #0077cc;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 24px;
-        }
-        nav {
-            background-color: #f1f1f1;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px 15px;
-            margin: 0 5px;
-            background-color: #e3e3e3;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background-color: #0077cc;
-            color: white;
-        }
-        main {
-            padding: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #0077cc;
-            color: white;
-            margin-top: 20px;
-        }
-        .card {
-            padding: 20px;
-            background-color: #f5faff;
-            border-radius: 6px;
-            border: 1px solid #d0e7ff;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #0077cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn:hover {
-            background-color: #005fa3;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-<header>
-    🏢 ระบบจัดการหอพัก (Dormitory Management System)
-</header>
+    <nav class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="/" class="flex items-center py-4 px-2">
+                            <span class="font-bold text-gray-700 text-2xl">SwapLife 🌍</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="/" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold">🏠 หน้าแรก</a>
+                    <a href="/swap" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">🔁 แลกของ</a>
+                    <a href="/post" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">➕ โพสต์ของ</a>
+                    <a href="/profile" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">👤 โปรไฟล์</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<nav>
-    <a href="index.jsp">หน้าแรก</a>
-    <a href="roomList.jsp">ข้อมูลห้องพัก</a>
-    <a href="tenantList.jsp">ข้อมูลผู้เช่า</a>
-    <a href="billing.jsp">การชำระเงิน</a>
-    <a href="contact.jsp">ติดต่อ</a>
-</nav>
+    <header class="bg-green-600 text-white text-center py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-bold mb-4">ของเก่าคุณ = ของใหม่ของใครอีกคน</h1>
+            <p class="text-xl mb-8">ให้ของที่ไม่ได้ใช้ กลับไปมีคุณค่าอีกครั้งกับ SwapLife</p>
+            <div class="space-x-4">
+                <%-- ปุ่ม CTA (Call-to-Action) --%>
+                <a href="/browse" class="bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">
+                    เริ่มแลกของเลย
+                </a>
+                <a href="/post" class="bg-green-800 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-900 transition duration-300">
+                    โพสต์ของของคุณ
+                </a>
+            </div>
+        </div>
+    </header>
 
-<main>
-    <h2>ยินดีต้อนรับเข้าสู่ระบบจัดการหอพัก</h2>
-    <div class="card">
-        <p>ระบบนี้ช่วยให้ผู้ดูแลสามารถจัดการข้อมูลห้องพัก ผู้เช่า และการชำระเงินได้สะดวกและรวดเร็ว</p>
-        <p>คุณสามารถเข้าสู่ระบบเพื่อเริ่มใช้งานได้ที่ปุ่มด้านล่าง</p>
-        <a href="login.jsp" class="btn">เข้าสู่ระบบผู้ดูแล</a>
-    </div>
-</main>
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">หมวดหมู่ยอดนิยม</h2>
+            
+            <%-- JSTL Loop: วนลูปแสดงข้อมูลหมวดหมู่ที่ส่งมาจาก Controller --%>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <c:forEach var="category" items="${popularCategories}">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="${category.imageUrl}" alt="${category.name}" class="w-full h-48 object-cover">
+                        <div class="p-4 text-center">
+                            <h3 class="font-bold text-xl text-gray-700">${category.name}</h3>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+            
+        </div>
+    </section>
 
-<footer>
-    © 2025 Dormitory Management System | สงวนลิขสิทธิ์
-</footer>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 SwapLife. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
